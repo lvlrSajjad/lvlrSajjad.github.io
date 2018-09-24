@@ -649,7 +649,7 @@
 				<script>
 mapboxgl.accessToken = 'pk.eyJ1IjoibHZscnhhdXMiLCJhIjoiY2ptZ2pwOWg2MWpvdjN2bzFraWdrb3YzeCJ9.h1a0Sp4WnbWFHz5FxluHWw';
 var map = new mapboxgl.Map({
-    style: 'mapbox://styles/mapbox/light-v9',
+    style: 'mapbox://styles/mapbox/dark-v9',
     center: [57.0834, 30.2839],
     zoom: 15.5,
     pitch: 45,
@@ -670,6 +670,7 @@ map.on('load', function() {
             break;
         }
     }
+map.marker([30.2839, 57.0834]).addTo(map);
 
     map.addLayer({
         'id': '3d-buildings',
