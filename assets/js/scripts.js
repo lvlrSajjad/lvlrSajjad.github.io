@@ -293,7 +293,6 @@ jQuery(function ($) {
     // -------------------------------------------------------------
 
     $('#contactForm').on('submit',function(e){
-
         e.preventDefault();
 
         var $action = $(this).prop('action');
