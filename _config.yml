@@ -1,12 +1,12 @@
 plugins:
   - jekyll-seo-tag
-name: sajjad asadi personal homepage سجاد اسدی
+name: sajjad asadi personal homepage
 description: This is sajjad asadi personal homepage.
-author: sajjad asadi سجاد اسدی
+author: sajjad asadi
 author_email: lvlr.xaus@gmail.com
 url: https://lvlrsajjad.github.io/
 social:
-  name: sajjad asadi سجاد اسدی
+  name: sajjad asadi
   links:
     - https://www.linkedin.com/in/sajjad-asadi
     - https://github.com/lvlrSajjad
