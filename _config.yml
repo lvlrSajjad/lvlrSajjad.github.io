@@ -1,2 +1,2 @@
-gems:
-- jekyll-seo-tag
+  plugins:
+    - jekyll-seo-tag
