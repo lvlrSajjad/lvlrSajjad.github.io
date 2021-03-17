@@ -51,7 +51,7 @@ function init() {
     var pointLight = getPointLight(1);
     pointLight.position.y = 2;
     pointLight.add(sphere);
-    pointLight.intensity = 2;
+    pointLight.intensity = 0;
 
 
     /**
@@ -61,7 +61,7 @@ function init() {
     var spotLight = getSpotLight(1);
     spotLight.position.y = 2;
     spotLight.add(sphere);
-    spotLight.intensity = 2;
+    spotLight.intensity = 0;
 
     /**
      * directionalLight
@@ -70,7 +70,7 @@ function init() {
     var directionalLight = getDirectionalLight(1);
     directionalLight.position.y = 2;
     directionalLight.add(sphere);
-    directionalLight.intensity = 2;
+    directionalLight.intensity = 0;
 
     /**
      * ambientLight
@@ -79,7 +79,7 @@ function init() {
     var ambientLight = getAmbientLight(0.001);
     ambientLight.position.y = 2;
     ambientLight.add(sphere);
-    ambientLight.intensity = 2;
+    ambientLight.intensity = 0;
 
     /**
      * rectAreaLight
@@ -88,7 +88,7 @@ function init() {
     var rectAreaLight = getRectAreaLight(1, 10);
     rectAreaLight.position.y = 2;
     rectAreaLight.add(sphere);
-    rectAreaLight.intensity = 2;
+    rectAreaLight.intensity = 0;
 
 
     /**
