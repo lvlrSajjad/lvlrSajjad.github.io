@@ -1,4 +1,10 @@
-# What connecting a mobile app to a Solana wallet looked like before the Mobile Wallet Adapter
+---
+layout: writing
+permalink: /writing/solana-mobile-before-sms/
+title: "What connecting a mobile app to a Solana wallet looked like before the Mobile Wallet Adapter"
+description: "A Flutter prototype from May 2022, the Solana Mobile Stack release that superseded it a month later, and what still transfers."
+date: 2026-09-06
+---
 
 *An engineering note about a prototype from May 2022, and what the platform did to it a month later.*
 
