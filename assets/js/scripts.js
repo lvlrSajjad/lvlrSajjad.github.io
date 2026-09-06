@@ -1,24 +1,12 @@
 /*
-Theme Name: IAMX
-Author: Trendy Theme
-Author URL: trendytheme.net
-*/
+Theme: IAMX by Trendy Theme (trendytheme.net)
+Trimmed to the behaviour this page actually uses.
 
-/*
-    = Preloader
-    = Animated scrolling / Scroll Up
-    = Full Screen Slider
-    = Sticky Menu
-    = Back To Top
-    = Countup
-    = Progress Bar
-    = More skill
-    = Shuffle
-    = Magnific Popup
-    = Vidio auto play
-    = Fit Vids
-    = Google Map
-
+Removed: Shuffle portfolio grid, Magnific Popup, FitVids, the count-up
+counters, the skill progress bars, the AJAX contact form and the Google Map.
+None of their plugins are loaded any more, so each was throwing on load — and
+because they all sat inside this one ready handler, the first throw (Shuffle)
+aborted everything below it, including WOW and Stellar.
 */
 
 jQuery(function ($) {
@@ -29,12 +17,10 @@ jQuery(function ($) {
      * Preloader
     /* ---------------------------------------------- */
 
-    $(window).ready(function() {
+    $(window).ready(function () {
         $('#pre-status').fadeOut();
         $('#tt-preloader').delay(350).fadeOut('slow');
     });
-
-
 
 
     // -------------------------------------------------------------
@@ -42,27 +28,33 @@ jQuery(function ($) {
     // -------------------------------------------------------------
 
     (function () {
-        $('a[href*=#]').bind("click", function(e){
-            var anchor = $(this);
-            $('html, body').stop().animate({
-                scrollTop: $(anchor.attr('href')).offset().top
-            }, 1000);
+        $('a[href^="#"]').on('click', function (e) {
+            var href = $(this).attr('href');
+            if (href === '#') {
+                return;
+            }
+            var $target = $(href);
+            if (!$target.length) {
+                return;
+            }
             e.preventDefault();
+            $('html, body').stop().animate({
+                scrollTop: $target.offset().top
+            }, 700);
         });
     }());
-
 
 
     // -------------------------------------------------------------
     // Full Screen Slider
     // -------------------------------------------------------------
+
     (function () {
-        $(".tt-fullHeight").height($(window).height());
+        $('.tt-fullHeight').height($(window).height());
 
-        $(window).resize(function(){
-            $(".tt-fullHeight").height($(window).height());
+        $(window).resize(function () {
+            $('.tt-fullHeight').height($(window).height());
         });
-
     }());
 
 
@@ -78,10 +70,8 @@ jQuery(function ($) {
         $('body').scrollspy({
             target: '.navbar-custom',
             offset: 70
-        })
+        });
     }());
-
-
 
 
     // -------------------------------------------------------------
@@ -89,7 +79,7 @@ jQuery(function ($) {
     // -------------------------------------------------------------
 
     (function () {
-        $(window).scroll(function() {
+        $(window).scroll(function () {
             if ($(this).scrollTop() > 100) {
                 $('.scroll-up').fadeIn();
             } else {
@@ -100,175 +90,21 @@ jQuery(function ($) {
 
 
     // -------------------------------------------------------------
-    // Countup
-    // -------------------------------------------------------------
-    $('.count-wrap').bind('inview', function(event, visible, visiblePartX, visiblePartY) {
-        if (visible) {
-            $(this).find('.timer').each(function () {
-                var $this = $(this);
-                $({ Counter: 0 }).animate({ Counter: $this.text() }, {
-                    duration: 2000,
-                    easing: 'swing',
-                    step: function () {
-                        $this.text(Math.ceil(this.Counter));
-                    }
-                });
-            });
-            $(this).unbind('inview');
-        }
-    });
-
-
-    // -------------------------------------------------------------
-    // Progress Bar
-    // -------------------------------------------------------------
- 
-    $('.skill-progress').bind('inview', function(event, visible, visiblePartX, visiblePartY) {
-        if (visible) {
-            $.each($('div.progress-bar'),function(){
-                $(this).css('width', $(this).attr('aria-valuenow')+'%');
-            });
-            $(this).unbind('inview');
-        }
-    });
-    
-    // -------------------------------------------------------------
-    // More skill
-    // -------------------------------------------------------------
-    $('.more-skill').bind('inview', function(event, visible, visiblePartX, visiblePartY) {
-        if (visible) {
-            $('.chart').easyPieChart({
-                //your configuration goes here
-                easing: 'easeOut',
-                delay: 3000,
-                barColor:'#68c3a3',
-                trackColor:'rgba(255,255,255,0.2)',
-                scaleColor: false,
-                lineWidth: 8,
-                size: 140,
-                animate: 2000,
-                onStep: function(from, to, percent) {
-                    this.el.children[0].innerHTML = Math.round(percent);
-                }
-
-            });
-            $(this).unbind('inview');
-        }
-    });
-
-
-    // -------------------------------------------------------------
-    // Shuffle
+    // Stellar, for background scrolling
     // -------------------------------------------------------------
 
-    (function () {
+    $(window).on('load', function () {
+        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+            .test(navigator.userAgent);
+        var reduceMotion = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        var $grid = $('#grid');
-
-        $grid.shuffle({
-            itemSelector: '.portfolio-item'
-        });
-
-        /* reshuffle when user clicks a filter item */
-        $('#filter a').click(function (e) {
-            e.preventDefault();
-
-            // set active class
-            $('#filter a').removeClass('active');
-            $(this).addClass('active');
-
-            // get group name from clicked item
-            var groupName = $(this).attr('data-group');
-
-            // reshuffle grid
-            $grid.shuffle('shuffle', groupName );
-        });
-
-
-    }());
-
-
-    // -------------------------------------------------------------
-    // Magnific Popup
-    // -------------------------------------------------------------
-
-    (function () {
-      $('.image-link').magnificPopup({
-
-        gallery: {
-          enabled: true
-        },
-        removalDelay: 300, // Delay in milliseconds before popup is removed
-        mainClass: 'mfp-with-zoom', // this class is for CSS animation below
-        type:'image'
-      });
-
-    }());
-
-
-
-    (function () {
-        $('.popup-video').magnificPopup({
-            disableOn: 700,
-            type: 'iframe',
-            mainClass: 'mfp-with-zoom',
-            removalDelay: 300,
-            preloader: false,
-            fixedContentPos: false
-        });
-    }());
-
-
-
-
-
-    // -------------------------------------------------------------
-    // Fit Vids
-    // -------------------------------------------------------------
-    (function () {
-        $(".video-container").fitVids();
-    }());
-
-
-
-    // -------------------------------------------------------------
-    // Vidio auto play
-    // -------------------------------------------------------------
-   // (function () {
-    
-    /* Vimeo API: http://developer.vimeo.com/player/js-api */
-    
-   //     var iframe = document.getElementById('nofocusvideo');
-        // $f == Froogaloop
-    //    var player = $f(iframe);
-
-    //    $('.modal').on('hidden.bs.modal', function () {
-    //    player.api('pause');
-    //    })
-
-    //    $('.modal').on('shown.bs.modal', function () {
-    //    player.api('play');
-    //    })
-   // }());
-
-
-
-
-    // -------------------------------------------------------------
-    // STELLAR FOR BACKGROUND SCROLLING
-    // -------------------------------------------------------------
-
-    $(window).load(function() {
-
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-         
-        }else {
+        if (!isMobile && !reduceMotion) {
             $.stellar({
                 horizontalScrolling: false,
                 responsive: true
             });
         }
-
     });
 
 
@@ -277,123 +113,15 @@ jQuery(function ($) {
     // -------------------------------------------------------------
 
     (function () {
+        // WOW hides .wow elements until they scroll into view. If the visitor
+        // has asked for reduced motion, skip init entirely so nothing is
+        // hidden waiting for an animation that will never play.
+        var reduceMotion = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        new WOW({
-
-            mobile:  false
-
-        }).init();
-
+        if (!reduceMotion && typeof WOW === 'function') {
+            new WOW({ mobile: false }).init();
+        }
     }());
-
-
-
-    // -------------------------------------------------------------
-    // Contact Form
-    // -------------------------------------------------------------
-
-    $('#contactForm').on('submit',function(e){
-        e.preventDefault();
-
-        var $action = $(this).prop('action');
-        var $data = $(this).serialize();
-        var $this = $(this);
-
-        $this.prevAll('.alert').remove();
-
-        $.post( $action, $data, function( data ) {
-
-            if( data.response=='error' ){
-
-                $this.before( '<div class="alert alert-danger">'+data.message+'</div>' );
-            }
-
-            if( data.response=='success' ){
-
-                $this.before( '<div class="alert alert-success">'+data.message+'</div>' );
-                $this.find('input, textarea').val('');
-            }
-
-        }, "json");
-
-    });
-
-
-
-
-    // -------------------------------------------------------------
-    // Google Map
-    // -------------------------------------------------------------
-
-    (function () {
-        var myLatlng = new google.maps.LatLng(30.2839, 57.0834);
-
-            var styles = [
-                {
-                    featureType: "landscape",
-                    stylers: [
-                        { color: '#f7f7f7' }
-                    ]
-                },{
-                    featureType: "natural",
-                    stylers: [
-                        { hue: '#00ffe6' }
-                    ]
-                },{
-                    featureType: "road",
-                    stylers: [
-                        { hue: '#fff' },
-                        { saturation: -70 }
-                    ]
-                },{
-                    featureType: "building",
-                    elementType: "labels",
-                    stylers: [
-                        { hue: '' }
-                    ]
-                },{
-                    featureType: "poi", //points of interest
-                    stylers: [
-                        { hue: '' }
-                    ]
-                }
-            ];
-
-            var mapOptions = {
-                zoom: 15,
-                scrollwheel: false,
-                center: myLatlng,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                disableDefaultUI: true,
-                styles: styles
-            }
-            var map = new google.maps.Map(document.getElementById('mapCanvas'), mapOptions);
-
-            var marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map,
-                animation: google.maps.Animation.DROP,
-                title: 'Hello World!'
-            });
-
-            var contentString = '' +
-                    '' +
-                    '';
-
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString
-            });
-
-            google.maps.event.addListener(marker, 'click', function () {
-                infowindow.open(map, marker);
-            });
-
-    }());
-
 
 });
-
-
-
-
-

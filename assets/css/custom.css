@@ -1,0 +1,254 @@
+/* ==========================================================================
+   Local overrides. Loaded after the vendor theme; nothing here edits
+   style.css directly, so the theme stays upgradable.
+   Palette follows style.css: #68c3a3 green, #52b3d9 blue, #1a1e23 dark.
+   ========================================================================== */
+
+:root {
+    --accent: #68c3a3;
+    --accent-blue: #52b3d9;
+    --ink: #2c3e50;
+    --ink-muted: #5a6a78;
+    --dark: #1a1e23;
+    --dark-muted: #a6b0bd;
+    --rule: #e4e8ec;
+}
+
+/* --------------------------------------------------------------------------
+   1. Typography
+   The theme sets 14px/28px, which is small for long-form prose and gives an
+   awkward 2.0 line-height ratio. 16px/1.7 reads better without reflowing the
+   grid.
+   -------------------------------------------------------------------------- */
+body {
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+p { margin-bottom: 1.1em; }
+
+/* Cap the measure. Prose past ~75 characters a line is measurably harder to
+   track back to the next line, and the theme's col-md-8 runs well past it. */
+.short-info p,
+.timeline-body p,
+.contact-lede {
+    max-width: 68ch;
+}
+.short-info.text-center p,
+.contact-lede { margin-left: auto; margin-right: auto; }
+
+::selection { background: var(--accent); color: #fff; }
+
+/* --------------------------------------------------------------------------
+   2. Section titles
+   50px/50px is a poster weight, not a document weight, and the flat leading
+   clips descenders on wrapped titles.
+   -------------------------------------------------------------------------- */
+.section-title {
+    font-size: 38px;
+    line-height: 1.2;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    margin-bottom: 56px;
+}
+.skills-section .section-title { margin-bottom: 56px; }
+
+@media (max-width: 767px) {
+    .section-title { font-size: 28px; margin-bottom: 36px; }
+    .section-padding { padding: 64px 0 56px; }
+}
+
+/* --------------------------------------------------------------------------
+   3. Hero
+   -------------------------------------------------------------------------- */
+.intro h1 {
+    font-weight: 300;
+    letter-spacing: -0.02em;
+}
+.intro p {
+    max-width: 46em;
+    margin-left: auto;
+    margin-right: auto;
+}
+.intro-sub { letter-spacing: 0.04em; }
+
+@media (max-width: 767px) {
+    .intro h1 { font-size: 34px; line-height: 1.2; }
+}
+
+/* --------------------------------------------------------------------------
+   4. Skills as chips
+   The source is one long &middot;-separated run per category. Rendering each
+   item as a chip makes it scannable instead of a paragraph to be read.
+   -------------------------------------------------------------------------- */
+.skills-section .short-info p {
+    max-width: none;
+    text-align: center;
+    font-size: 0;            /* collapses the whitespace between chips */
+    line-height: 0;
+    margin-bottom: 0;
+}
+.skills-section .short-info p .chip {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0 8px 8px 0;
+    padding: 7px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.04);
+    color: #e8edf2;
+    transition: border-color .18s ease, background .18s ease;
+}
+.skills-section .short-info p .chip:hover {
+    border-color: var(--accent);
+    background: rgba(104, 195, 163, 0.1);
+}
+/* The English-proficiency line is a sentence, not a list — opt it out. */
+.skills-section .short-info p.plain {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 68ch;
+    margin: 0 auto;
+}
+.skills-section .section-title { margin-top: 24px; }
+.skills-section .section-title:first-of-type { margin-top: 0; }
+
+/* The check bullet is an inline ::before glyph plus a 10px margin, so a
+   wrapped line runs back underneath the tick. Hanging indent fixes it. */
+ul.list-check li {
+    padding-left: 25px;
+    text-indent: -25px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Resume timeline
+   -------------------------------------------------------------------------- */
+.timeline-heading h3 {
+    font-weight: 500;
+    letter-spacing: -0.005em;
+}
+.timeline-heading span {
+    font-weight: 400;
+    color: var(--ink-muted);
+    line-height: 1.5;
+}
+.timeline-body p:last-child { margin-bottom: 0; }
+.posted-date .month { letter-spacing: 0.03em; }
+
+/* --------------------------------------------------------------------------
+   6. Contact
+   Sits between the dark skills section and the dark footer, so it carries the
+   dark ground rather than interrupting it with a white band.
+   -------------------------------------------------------------------------- */
+.contact-section {
+    background-color: var(--dark);
+    color: #fff;
+    padding-bottom: 80px;
+}
+.contact-section .section-title { color: #fff; }
+.contact-lede {
+    color: var(--dark-muted);
+    margin-bottom: 36px;
+}
+
+/* Keep the exam date off the end of the score sentence. */
+.skills-section p.plain .text-muted { display: block; margin-top: 4px; }
+/* The theme's `.short-info ul { display: inline-block }` is (0,1,1) and
+   outranks a bare `.contact-list`, so qualify this one too. */
+.short-info .contact-list {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 32px;
+    margin: 0;
+    padding: 0;
+}
+/* .short-info ul li in the theme is (0,1,2) and sets width:50%; float:left.
+   This needs to outrank it, hence the extra class. */
+.short-info .contact-list li {
+    font-size: 16px;
+    width: auto;
+    float: none;
+    white-space: nowrap;
+}
+.contact-list i {
+    color: var(--accent);
+    margin-right: 10px;
+    width: 18px;
+    text-align: center;
+}
+.contact-list a { color: #fff; border-bottom: 1px solid rgba(255, 255, 255, 0.22); }
+.contact-list a:hover,
+.contact-list a:focus { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* --------------------------------------------------------------------------
+   7. Links and focus
+   The theme ships no visible focus ring, which makes the page unusable by
+   keyboard.
+   -------------------------------------------------------------------------- */
+a { transition: color .18s ease; }
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+.social-icons a:focus-visible { outline-offset: 6px; }
+
+/* --------------------------------------------------------------------------
+   8. Motion
+   wow.js animates content in on scroll. Honour the OS-level preference, and
+   make sure nothing stays stuck at opacity 0 if the observer never fires.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+    }
+    .wow { visibility: visible !important; opacity: 1 !important; }
+}
+
+/* --------------------------------------------------------------------------
+   9. Print
+   A resume that prints cleanly is worth the twenty lines. Drops the parallax
+   hero, chrome and dark grounds; expands links to their targets.
+   -------------------------------------------------------------------------- */
+@media print {
+    #home, .header, .scroll-up, .mouse-icon, .download-button,
+    .social-icons, .myphoto { display: none !important; }
+
+    body { font-size: 11pt; line-height: 1.45; color: #000; background: #fff; }
+    .section-padding { padding: 18pt 0 12pt; }
+    .section-title { font-size: 18pt; margin-bottom: 14pt; page-break-after: avoid; }
+
+    .skills-section, .contact-section, .footer-wrapper {
+        background: #fff !important;
+        color: #000 !important;
+    }
+    .skills-section .section-title,
+    .contact-section .section-title,
+    .contact-list a { color: #000 !important; }
+    .skills-section .short-info p .chip {
+        border-color: #bbb;
+        background: none;
+        color: #000;
+    }
+
+    .timeline > li, .contact-list { page-break-inside: avoid; }
+
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 9pt;
+        color: #444;
+        word-break: break-all;
+    }
+    a[href^="#"]::after, .contact-list a::after { content: ""; }
+}
