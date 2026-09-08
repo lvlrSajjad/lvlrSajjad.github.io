@@ -1,12 +1,26 @@
-plugins:
-  - jekyll-seo-tag
-name: sajjad asadi personal homepage
-description: This is sajjad asadi personal homepage.
-author: sajjad asadi
+title: Sadjad (Mo) Asadi
+name: Sadjad (Mo) Asadi
+description: Senior software engineer. Open-source tools and applied research in post-quantum cryptography policy and AI coding agents, written so the reader can check the claims.
+author: Sadjad (Mo) Asadi
 author_email: lvlr.xaus@gmail.com
 url: https://lvlrsajjad.github.io
+lang: en
+timezone: UTC
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
 social:
-  name: sajjad asadi
+  name: Sadjad (Mo) Asadi
   links:
-    - https://www.linkedin.com/in/sajjad-asadi
     - https://github.com/lvlrSajjad
+    - https://www.linkedin.com/in/sadjad-mo-asadi/
+    - https://medium.com/@lvlr.xaus
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - tools/
+  - .claude/

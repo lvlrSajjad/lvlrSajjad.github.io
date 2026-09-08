@@ -1,7 +1,7 @@
 """Generate the 1200x630 Open Graph share card.
 
 Run from the repo root:  python3 tools/make_og_card.py
-Writes assets/images/og-card.png. Colours track assets/css/style.css.
+Writes assets/images/og-card.png. Colours track assets/css/site.css.
 """
 from PIL import Image, ImageDraw, ImageFont
 
