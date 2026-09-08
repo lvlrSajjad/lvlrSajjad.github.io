@@ -107,14 +107,6 @@ p { margin-bottom: 1.1em; }
     border-color: var(--accent);
     background: rgba(104, 195, 163, 0.1);
 }
-/* The English-proficiency line is a sentence, not a list — opt it out. */
-.skills-section .short-info p.plain {
-    text-align: center;
-    font-size: 16px;
-    line-height: 1.7;
-    max-width: 68ch;
-    margin: 0 auto;
-}
 .skills-section .section-title { margin-top: 24px; }
 .skills-section .section-title:first-of-type { margin-top: 0; }
 
@@ -156,8 +148,6 @@ ul.list-check li {
     margin-bottom: 36px;
 }
 
-/* Keep the exam date off the end of the score sentence. */
-.skills-section p.plain .text-muted { display: block; margin-top: 4px; }
 /* The theme's `.short-info ul { display: inline-block }` is (0,1,1) and
    outranks a bare `.contact-list`, so qualify this one too. */
 .short-info .contact-list {

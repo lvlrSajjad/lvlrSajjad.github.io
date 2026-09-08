@@ -73,7 +73,6 @@
         <div class="social-icons">
             <ul class="list-inline">
                 <li><a href="https://t.me/lvlr_xaus" aria-label="Telegram" target="_blank" rel="noopener noreferrer"><i class="fa fa-telegram"></i></a></li>
-                <li><a href="https://instagram.com/lvlr.xauss" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa fa-instagram"></i></a></li>
                 <li><a href="https://www.linkedin.com/in/sadjad-mo-asadi/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a></li>
                 <li><a href="https://github.com/lvlrSajjad" target="_blank" rel="noopener noreferrer"><i class="fa fa-github"></i></a></li>
                 <li><a href="mailto:lvlr.xaus@gmail.com"><i class="fa fa-envelope"></i></a></li>
@@ -107,6 +106,7 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#research">Research</a></li>
+                    <li><a href="#tools">Tools</a></li>
                     <li><a href="#resume">Resume</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <!-- <li><a href="#works">Works</a></li> -->
@@ -275,6 +275,63 @@
         </div><!-- /row -->
     </div><!-- /.container -->
 </section><!-- End Research & Writing Section -->
+
+<!-- Open-Source Tools Section -->
+<section id="tools" class="about-section section-padding">
+    <div class="container">
+        <h2 class="section-title wow fadeInUp">Open-Source Tools</h2>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="short-info wow fadeInUp">
+                    <p>Tools built for problems I hit in my own work and released once they had
+                        earned it, each with the measurements and the failure cases that motivated
+                        it. <a href="#research">cbomctl</a>, above, is the third.</p>
+                </div>
+
+                <div class="short-info wow fadeInUp">
+                    <h3>simframe &mdash; the iOS Simulator for coding agents</h3>
+                    <p>MCP server and CLI that gives an agent eyes, hands and memory on the iOS
+                        Simulator. A background loop keeps the newest frame warm, so a look at the
+                        screen costs about 20 ms instead of a blocking screenshot. The screen comes back
+                        as a numbered text map with tap points rather than as an image, at roughly a
+                        fifth of the tokens. A whole flow runs in one call, each step verified against
+                        what the same action did last time, and screens the agent has seen before are
+                        answered from memory.</p>
+                    <p>The published numbers record their own preconditions, and the README says
+                        which earlier figures were wrong and why: they had been measuring two bugs
+                        rather than the tool.</p>
+                    <p>
+                        <a href="https://lvlrsajjad.github.io/simframe/" target="_blank" rel="noopener noreferrer">Website</a> &middot;
+                        <a href="https://github.com/lvlrSajjad/simframe" target="_blank" rel="noopener noreferrer">Source</a> &middot;
+                        <a href="https://www.npmjs.com/package/simframe" target="_blank" rel="noopener noreferrer">npm</a>
+                    </p>
+                </div>
+
+                <div class="short-info wow fadeInUp">
+                    <h3>credoctor &mdash; prove your git credentials, don&rsquo;t read the config</h3>
+                    <p>CLI for anyone who works for more than one organisation from one machine. It
+                        treats everything that must agree for one directory tree &mdash; git identity,
+                        SSH key, GPG signing key, GitHub CLI account, browser profile &mdash; as a
+                        single credential domain, and verifies it by making real calls: an SSH greeting,
+                        a fetch, a GitHub API request with that token. That catches what reading config
+                        files cannot, such as an SSH key registered on the right account but never
+                        authorised for the organisation&rsquo;s SSO, or a token that can still reach
+                        another employer&rsquo;s repositories.</p>
+                    <p>Read-only by design in its first release: it will not write to your git,
+                        SSH or keychain configuration until the checks have earned that trust.</p>
+                    <p>
+                        <a href="https://lvlrsajjad.github.io/credoctor/" target="_blank" rel="noopener noreferrer">Website</a> &middot;
+                        <a href="https://github.com/lvlrSajjad/credoctor" target="_blank" rel="noopener noreferrer">Source</a> &middot;
+                        <a href="https://www.npmjs.com/package/credoctor" target="_blank" rel="noopener noreferrer">npm</a>
+                    </p>
+                </div>
+
+            </div>
+        </div><!-- /row -->
+    </div><!-- /.container -->
+</section><!-- End Open-Source Tools Section -->
 
 <section id="resume" class="resume-section section-padding">
     <div class="container">
@@ -540,10 +597,6 @@
         <h2 class="section-title wow fadeInUp">Knowledge</h2>
         <div class="row"><div class="col-md-12"><div class="short-info wow fadeInUp">
             <p><span class="chip">Software Architecture</span><span class="chip">Software Engineering</span><span class="chip">Unit Testing</span><span class="chip">Web Security</span><span class="chip">Git</span><span class="chip">Design Patterns</span><span class="chip">Algorithms</span><span class="chip">Refactoring</span><span class="chip">DevOps</span></p>
-        </div></div></div>
-        <h2 class="section-title wow fadeInUp">English Proficiency</h2>
-        <div class="row"><div class="col-md-12"><div class="short-info wow fadeInUp">
-            <p class="plain"><strong>TOEFL iBT &mdash; 99 / 120.</strong> Reading 25 &middot; Listening 25 &middot; Speaking 22 &middot; Writing 27. <span class="text-muted">Taken October 2021.</span></p>
         </div></div></div>
     </div><!-- /.container -->
 </section><!-- End Skills Section -->
