@@ -147,6 +147,27 @@
                 <a href="https://www.npmjs.com/package/simframe" target="_blank" rel="noopener noreferrer">npm</a>
             </p>
 
+            <h3 id="sidecrew"><a href="https://github.com/lvlrSajjad/sidecrew" target="_blank" rel="noopener noreferrer">sidecrew</a>
+                <span class="tag">&mdash; local models behind a compile&rarr;run&rarr;mutation verifier</span></h3>
+            <p>Claude plans and reviews; 7B models running on the machine write the unit tests; a
+                mechanical gate decides what a human ever sees &mdash; a candidate survives only if it
+                compiles, passes against the unmodified source, kills a deliberately introduced bug in
+                the function it claims to test, and is not tautological. Generation costs zero API
+                tokens and touches no network, and the data contract refuses to serialise a local run
+                that says otherwise. The experiment behind it was frozen before it ran and is published
+                with its negative results: TypeScript reached 0.85 of Claude Haiku&rsquo;s survival
+                rate, Swift did not clear the bar, and the 14&nbsp;B model was never the right trade.
+                Written up in
+                <a href="/writing/a-verifier-beats-a-bigger-model/">A verifier beats a bigger
+                model</a>,
+                <a href="/writing/the-exemplar-was-worth-one-import/">The exemplar was worth one
+                import line</a> and
+                <a href="/writing/the-gate-is-only-as-honest-as-what-reaches-it/">The gate is only as
+                honest as what reaches it</a>.</p>
+            <p class="where">
+                <a href="https://github.com/lvlrSajjad/sidecrew" target="_blank" rel="noopener noreferrer">Source</a>
+            </p>
+
             <h3 id="credoctor"><a href="https://lvlrsajjad.github.io/credoctor/" target="_blank" rel="noopener noreferrer">credoctor</a>
                 <span class="tag">&mdash; prove your git credentials, don&rsquo;t read the config</span></h3>
             <p>For anyone who works for more than one organisation from one machine. It treats
@@ -178,6 +199,17 @@
         <section id="writing">
             <h2>Writing</h2>
             <ul class="pieces">
+                <li>
+                    <h3><a href="/writing/a-verifier-beats-a-bigger-model/">A verifier beats a bigger model</a></h3>
+                    <p class="dek">A 7B model on a laptop wrote unit tests at 0.85 of Claude
+                        Haiku&rsquo;s survival rate for zero API tokens. The 14B did not do
+                        better.</p>
+                </li>
+                <li>
+                    <h3><a href="/writing/the-gate-is-only-as-honest-as-what-reaches-it/">The gate is only as honest as what reaches it</a></h3>
+                    <p class="dek">Six times a measurement said a model was bad at its job, and
+                        six times the model was fine.</p>
+                </li>
                 <li>
                     <h3><a href="https://lvlrsajjad.github.io/simframe/agents-shouldnt-blink.html" target="_blank" rel="noopener noreferrer">Agents shouldn&rsquo;t blink</a></h3>
                     <p class="dek">Perception for an agent should be an always-on daemon, not a
