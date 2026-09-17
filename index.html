@@ -140,6 +140,19 @@
                 <a href="https://lvlrsajjad.github.io/simframe/agents-shouldnt-blink.html" target="_blank" rel="noopener noreferrer">Agents
                 Shouldn&rsquo;t Blink</a>: perception should be a continuously running process,
                 not a function the model calls.</p>
+            <p>Where it actually stands, measured rather than claimed. Per-step wall clock is
+                <code>(model round trip + launch cost + ~1.7s &times; n) / n</code> for
+                <code>n</code> steps per model call, and at the recorded median of
+                <code>n = 2</code> that is about <b>11.7&nbsp;s a step &mdash; roughly six times
+                a human tester&rsquo;s 1.95&nbsp;s</b>, which includes their thinking. A recorded
+                route replayed with no model in the loop runs at 1.82&ndash;1.98&nbsp;s a step,
+                but it decides nothing, so that is a rehearsal rather than a fair comparison. The
+                engine&rsquo;s own share is ~1.7&nbsp;s of the total, which is the useful finding:
+                making perception faster is nearly worthless, and <code>n</code> is the only
+                variable worth touching. <code>step_ratio</code> is <b>1</b> &mdash; when a run
+                completes it takes exactly the minimum number of steps. Accuracy is the half
+                still unmeasured, and the story of how those numbers were corrected four times
+                in a day is <a href="/writing/four-corrections-to-one-number/">here</a>.</p>
             <p class="where">
                 <a href="https://lvlrsajjad.github.io/simframe/" target="_blank" rel="noopener noreferrer">Website</a><span class="sep">·</span>
                 <a href="https://lvlrsajjad.github.io/simframe/agents-shouldnt-blink.html" target="_blank" rel="noopener noreferrer">Essay</a><span class="sep">·</span>
