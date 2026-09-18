@@ -161,15 +161,29 @@
             </p>
 
             <h3 id="sidecrew"><a href="https://github.com/lvlrSajjad/sidecrew" target="_blank" rel="noopener noreferrer">sidecrew</a>
-                <span class="tag">&mdash; local models behind a compile&rarr;run&rarr;mutation verifier</span></h3>
-            <p>Claude plans and reviews; 7B models running on the machine write the unit tests; a
-                mechanical gate decides what a human ever sees &mdash; a candidate survives only if it
-                compiles, passes against the unmodified source, kills a deliberately introduced bug in
-                the function it claims to test, and is not tautological. Generation costs zero API
+                <span class="tag">&mdash; tiered inference with mechanical arbitration</span></h3>
+            <p>A frontier model plans and reviews; small models running on the machine do the narrow
+                work; and a <em>mechanical</em> gate &mdash; not a judge model, not a human &mdash;
+                decides what the expensive model is ever allowed to see. Generation costs zero API
                 tokens and touches no network, and the data contract refuses to serialise a local run
-                that says otherwise. The experiment behind it was frozen before it ran and is published
-                with its negative results: TypeScript reached 0.85 of Claude Haiku&rsquo;s survival
-                rate, Swift did not clear the bar, and the 14&nbsp;B model was never the right trade.
+                that claims otherwise.</p>
+            <p>Measured against the thing a colleague actually does today, which is asking the
+                frontier model directly: on 19 hand-written changes to an unmodified commercial
+                TypeScript codebase, the 7&nbsp;B produced output <strong>byte-identical to Opus on 18
+                of them</strong>, at <strong>zero worker tokens</strong> against Opus&rsquo;s 80,131.
+                On a second, larger codebase it was genuinely worse &mdash; and the gate caught every
+                failure loudly: one change renamed seven symbols when asked for one, another hit a type,
+                a module path and a public property key for <strong>122 compile errors</strong>. None
+                was applied. That pair is the whole argument: where the small model is good enough it
+                is free, and where it is not, a machine notices before a human does.</p>
+            <p>The decision rule was frozen before the tool had produced a single verdict, and it
+                currently <strong>withholds its own verdict</strong> &mdash; every task in those runs
+                was a rename, and a task set on which three different models emit identical bytes
+                cannot rank anything. The earlier unit-test workload is published with its negative
+                results too: 17/20 on a fixture of small pure functions in a project I configured, but
+                <strong>4/10 on unmodified real code</strong> with a 95&nbsp;% interval of roughly
+                0.12&ndash;0.74 &mdash; the fixture overstates real work by more than 2&times;. Swift
+                did not clear the bar, and the 14&nbsp;B model was never the right trade.
                 Written up in
                 <a href="/writing/a-verifier-beats-a-bigger-model/">A verifier beats a bigger
                 model</a>,
@@ -214,9 +228,10 @@
             <ul class="pieces">
                 <li>
                     <h3><a href="/writing/a-verifier-beats-a-bigger-model/">A verifier beats a bigger model</a></h3>
-                    <p class="dek">A 7B model on a laptop wrote unit tests at 0.85 of Claude
-                        Haiku&rsquo;s survival rate for zero API tokens. The 14B did not do
-                        better.</p>
+                    <p class="dek">A 7B model on a laptop wrote unit tests for zero API tokens and
+                        survived a mechanical gate 17/20 of the time &mdash; on a fixture of small pure
+                        functions. On unmodified real code it was 4/10. The 14B did not do better, and
+                        the gap between those two numbers is the note.</p>
                 </li>
                 <li>
                     <h3><a href="/writing/the-gate-is-only-as-honest-as-what-reaches-it/">The gate is only as honest as what reaches it</a></h3>
