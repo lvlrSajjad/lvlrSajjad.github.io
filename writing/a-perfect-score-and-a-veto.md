@@ -196,9 +196,28 @@ minutes of wall clock per candidate, almost all of it the projects' own test
 suites, which is its own finding: on a real repository the expensive half of this
 design is not the model.
 
-I do not know what they will say. The rule that will judge them was frozen before
-any of this existed, it is in the repository with a timestamp, and I have already
-had one occasion to be glad I could not reach in and adjust it.
+I did not know what they would say. They have since run, and the answer is worth
+recording next to the prediction: on both codebases the local model survived the
+gate at 12 of 12 and 11 of 12, and on both the blind approval rate came in at 9 of
+10 against the control's 10 of 10 — passing the frozen bar by a margin of exactly
+zero, twice.
+
+The rejected diff each time was the same species as the fixture's. On one project
+it reworded a doc comment while renaming; on the other it inserted a stray blank
+line while deleting an import — and that one's control twin made the identical
+deletion *without* the extra line, which the blind reviewer caught and split
+without knowing which was which. Across all three inputs: four of twenty-three
+sampled changes rejected for unrequested tidying, against zero of twenty-three for
+the network model.
+
+Two things I did not expect. **The survival rate turned out to be useless as a
+discriminator** — five of six measurable cells sat at or above 0.917, so the
+rule's ratio clauses could not separate anything, and the entire decision rested
+on the clause I had nearly cut. And **both projects landed on exactly 0.900
+against a 0.900 bar**, which is not a coincidence: with a ten-item sample the rate
+moves in steps of 0.1, so landing precisely on the threshold is the *most likely*
+way to pass. The sample size and the bar interact, and I had not thought about
+that when I wrote either of them.
 
 ## The transferable part
 
