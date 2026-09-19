@@ -1,0 +1,119 @@
+---
+layout: null
+permalink: /projects/
+title: Tools and experiments
+description: "sidecrew, credoctor, and a documented method for making a large codebase legible to AI coding agents."
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools and experiments — Sadjad (Mo) Asadi</title>
+    <meta name="description" content="{{ page.description }}">
+    <meta name="author" content="Sadjad (Mo) Asadi">
+    <meta name="theme-color" content="#222933">
+    <link rel="canonical" href="{{ site.url }}/projects/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sadjad (Mo) Asadi">
+    <meta property="og:title" content="Tools and experiments — Sadjad (Mo) Asadi">
+    <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:url" content="{{ site.url }}/projects/">
+    <meta property="og:image" content="{{ site.url }}/assets/images/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tools and experiments — Sadjad (Mo) Asadi">
+    <meta name="twitter:description" content="{{ page.description }}">
+    <meta name="twitter:image" content="{{ site.url }}/assets/images/og-card.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+    <link href="/assets/css/site.css" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+    <nav class="topbar">
+        <a href="/">Sadjad (Mo) Asadi</a>
+        <span class="sep">/</span>
+        <a href="/writing/">Writing</a>
+    </nav>
+
+    <header class="index-head">
+        <h1>Tools and experiments</h1>
+    </header>
+
+    <main>
+        <section id="projects">
+            <h3 id="sidecrew"><a href="https://github.com/lvlrSajjad/sidecrew" target="_blank" rel="noopener noreferrer">sidecrew</a>
+                <span class="tag">&mdash; tiered inference with mechanical arbitration</span></h3>
+            <p>A frontier model plans and reviews; small models running on the machine do the narrow
+                work; and a <em>mechanical</em> gate &mdash; not a judge model, not a human &mdash;
+                decides what the expensive model is ever allowed to see. Generation costs zero API
+                tokens and touches no network, and the data contract refuses to serialise a local run
+                that claims otherwise.</p>
+            <p>Measured against the thing a colleague actually does today, which is asking the
+                frontier model directly: on 19 hand-written changes to an unmodified commercial
+                TypeScript codebase, the 7&nbsp;B produced output <strong>byte-identical to Opus on 18
+                of them</strong>, at <strong>zero worker tokens</strong> against Opus&rsquo;s 80,131.
+                On a second, larger codebase it was genuinely worse &mdash; and the gate caught every
+                failure loudly: one change renamed seven symbols when asked for one, another hit a type,
+                a module path and a public property key for <strong>122 compile errors</strong>. None
+                was applied. That pair is the whole argument: where the small model is good enough it
+                is free, and where it is not, a machine notices before a human does.</p>
+            <p>The decision rule was frozen before the tool had produced a single verdict, and it
+                currently <strong>withholds its own verdict</strong> &mdash; every task in those runs
+                was a rename, and a task set on which three different models emit identical bytes
+                cannot rank anything. The earlier unit-test workload is published with its negative
+                results too: 17/20 on a fixture of small pure functions in a project I configured, but
+                <strong>4/10 on unmodified real code</strong> with a 95&nbsp;% interval of roughly
+                0.12&ndash;0.74 &mdash; the fixture overstates real work by more than 2&times;. Swift
+                did not clear the bar, and the 14&nbsp;B model was never the right trade.
+                Written up in
+                <a href="/writing/a-verifier-beats-a-bigger-model/">A verifier beats a bigger
+                model</a>,
+                <a href="/writing/the-exemplar-was-worth-one-import/">The exemplar was worth one
+                import line</a> and
+                <a href="/writing/the-gate-is-only-as-honest-as-what-reaches-it/">The gate is only as
+                honest as what reaches it</a>.</p>
+            <p class="where">
+                <a href="https://github.com/lvlrSajjad/sidecrew" target="_blank" rel="noopener noreferrer">Source</a>
+            </p>
+
+            <h3 id="credoctor"><a href="https://lvlrsajjad.github.io/credoctor/" target="_blank" rel="noopener noreferrer">credoctor</a>
+                <span class="tag">&mdash; prove your git credentials, don&rsquo;t read the config</span></h3>
+            <p>For anyone who works for more than one organisation from one machine. It treats
+                everything that must agree for one directory tree &mdash; git identity, SSH key,
+                GPG signing key, GitHub CLI account, browser profile &mdash; as a single credential
+                domain, and verifies it by making real calls: an SSH greeting, a fetch, a GitHub
+                API request with that token. That catches what reading config files cannot, such
+                as an SSH key registered on the right account but never authorised for the
+                organisation&rsquo;s SSO. Read-only by design in its first release.</p>
+            <p class="where">
+                <a href="https://lvlrsajjad.github.io/credoctor/" target="_blank" rel="noopener noreferrer">Website</a><span class="sep">·</span>
+                <a href="https://github.com/lvlrSajjad/credoctor" target="_blank" rel="noopener noreferrer">Source</a><span class="sep">·</span>
+                <a href="https://www.npmjs.com/package/credoctor" target="_blank" rel="noopener noreferrer">npm</a>
+            </p>
+
+            <h3 id="agent-ready"><a href="https://github.com/lvlrSajjad/agent-ready-monorepo" target="_blank" rel="noopener noreferrer">Agent-ready codebases</a>
+                <span class="tag">&mdash; a documented method</span></h3>
+            <p>How to make a large codebase legible to AI coding agents: one conventions file read
+                by every tool, skills written for the flows a single file cannot explain, and a
+                routing table so the right one is loaded before the agent starts guessing.
+                Published with the numbers from two comparable work windows and an explicit
+                account of what those numbers do not prove.</p>
+            <p class="where">
+                <a href="https://github.com/lvlrSajjad/agent-ready-monorepo" target="_blank" rel="noopener noreferrer">Worked exemplar</a><span class="sep">·</span>
+                <a href="https://medium.com/@lvlr.xaus/i-stopped-prompting-better-and-started-writing-things-down-087821900e4e" target="_blank" rel="noopener noreferrer">Essay</a>
+            </p>
+        </section>
+    </main>
+
+    <footer class="piece-foot">
+        <a href="/">← Back to the homepage</a>
+    </footer>
+</div>
+</body>
+</html>

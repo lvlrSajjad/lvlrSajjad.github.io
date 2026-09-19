@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sadjad (Mo) Asadi — Senior Software Engineer</title>
-    <meta name="description" content="Senior software engineer, more than a decade on large production codebases. Open-source tools and applied research in post-quantum cryptography policy and AI coding agents, written so the reader can check the claims.">
+    <meta name="description" content="Senior software engineer. I run a large production codebase, do applied research on securing long-lived regulated data, and publish the measurements so they can be checked.">
     <meta name="keywords" content="Sadjad Asadi, Sajjad Asadi, Mo Asadi, سجاد اسدی, senior software engineer, post-quantum cryptography, CBOM, FHIR, HL7, mobile engineering, React Native">
     <meta name="author" content="Sadjad (Mo) Asadi">
     <link rel="canonical" href="https://lvlrsajjad.github.io/">
@@ -14,7 +14,7 @@
     <meta property="og:type" content="profile">
     <meta property="og:site_name" content="Sadjad (Mo) Asadi">
     <meta property="og:title" content="Sadjad (Mo) Asadi — Senior Software Engineer">
-    <meta property="og:description" content="More than a decade on large production systems. Open-source tools and applied research in post-quantum cryptography policy, healthcare data standards, and AI coding agents.">
+    <meta property="og:description" content="Senior software engineer. I run a large production codebase, do applied research on securing long-lived regulated data, and publish the measurements so they can be checked.">
     <meta property="og:url" content="https://lvlrsajjad.github.io/">
     <meta property="og:image" content="https://lvlrsajjad.github.io/assets/images/og-card.png">
     <meta property="og:image:width" content="1200">
@@ -24,7 +24,7 @@
     <meta property="profile:last_name" content="Asadi">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Sadjad (Mo) Asadi — Senior Software Engineer">
-    <meta name="twitter:description" content="More than a decade on large production systems. Open-source tools and applied research in post-quantum cryptography policy, healthcare data standards, and AI coding agents.">
+    <meta name="twitter:description" content="Senior software engineer. I run a large production codebase, do applied research on securing long-lived regulated data, and publish the measurements so they can be checked.">
     <meta name="twitter:image" content="https://lvlrsajjad.github.io/assets/images/og-card.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,7 +75,9 @@
 
     <header class="masthead" id="home">
         <h1>Sadjad (Mo) Asadi</h1>
-        <p class="role">Senior software engineer. Lead mobile engineer at Ecotrak.</p>
+        <p class="role">Senior software engineer. I run a large production codebase, do applied
+            research on securing long-lived regulated data, and publish the measurements so they
+            can be checked.</p>
         <ul class="links">
             <li><a href="https://github.com/lvlrSajjad" rel="me noopener noreferrer" target="_blank">GitHub</a></li>
             <li><a href="https://www.linkedin.com/in/sadjad-mo-asadi/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
@@ -104,8 +106,8 @@
                 &mdash; so the next person, or the next agent, does not have to re-derive it.</p>
         </section>
 
-        <section id="research">
-            <h2>Research &amp; tools</h2>
+        <section id="work">
+            <h2>Selected work</h2>
             <p>My master&rsquo;s thesis built a healthcare SDK and specified post-quantum
                 resilience as a design goal. The work below is that goal taken seriously, plus
                 tools built for problems I hit in my own work and released once they had earned
@@ -128,143 +130,26 @@
                 <a href="https://pypi.org/project/cbomctl/" target="_blank" rel="noopener noreferrer">PyPI</a>
             </p>
 
-            <h3 id="tools"><a href="https://lvlrsajjad.github.io/simframe/" target="_blank" rel="noopener noreferrer">simframe</a>
+            <h3 id="simframe"><a href="https://lvlrsajjad.github.io/simframe/" target="_blank" rel="noopener noreferrer">simframe</a>
                 <span class="tag">&mdash; the iOS Simulator for coding agents</span></h3>
             <p>MCP server and CLI that gives an agent eyes, hands and memory on the iOS
                 Simulator. A background loop keeps the newest frame warm, so a look at the screen
-                costs about 20 ms instead of a blocking screenshot. The screen comes back as a
-                numbered text map with tap points rather than as an image, at roughly a fifth of
-                the tokens. A whole flow runs in one call, each step verified against what the
-                same action did last time, and screens the agent has seen before are answered
-                from memory. The argument behind it is in
-                <a href="https://lvlrsajjad.github.io/simframe/agents-shouldnt-blink.html" target="_blank" rel="noopener noreferrer">Agents
-                Shouldn&rsquo;t Blink</a>: perception should be a continuously running process,
-                not a function the model calls.</p>
-            <p>Where it actually stands, measured rather than claimed. Per-step wall clock is
-                <code>(model round trip + launch cost + ~1.7s &times; n) / n</code> for
-                <code>n</code> steps per model call, and at the recorded median of
-                <code>n = 2</code> that is about <b>11.7&nbsp;s a step &mdash; roughly six times
-                a human tester&rsquo;s 1.95&nbsp;s</b>, which includes their thinking. A recorded
-                route replayed with no model in the loop runs at 1.82&ndash;1.98&nbsp;s a step,
-                but it decides nothing, so that is a rehearsal rather than a fair comparison. The
-                engine&rsquo;s own share is ~1.7&nbsp;s of the total, which is the useful finding:
-                making perception faster is nearly worthless, and <code>n</code> is the only
-                variable worth touching. <code>step_ratio</code> is <b>1</b> &mdash; when a run
-                completes it takes exactly the minimum number of steps. Accuracy is the half
-                still unmeasured, and the model behind those figures &mdash; including the term
-                it was missing &mdash; is <a href="/writing/the-term-the-latency-model-was-missing/">here</a>.</p>
+                costs about 20&nbsp;ms instead of a blocking screenshot, and comes back as a
+                numbered text map with tap points rather than an image. Measured rather than
+                claimed: at the recorded median of <code>n = 2</code> a step takes about
+                <b>11.7&nbsp;s against a human tester&rsquo;s 1.95&nbsp;s</b>, and the
+                engine&rsquo;s own share is ~1.7&nbsp;s &mdash; so making perception faster is
+                nearly worthless, and <code>n</code> is the only variable worth touching.
+                Accuracy is the half still unmeasured.</p>
             <p class="where">
                 <a href="https://lvlrsajjad.github.io/simframe/" target="_blank" rel="noopener noreferrer">Website</a><span class="sep">·</span>
                 <a href="https://lvlrsajjad.github.io/simframe/agents-shouldnt-blink.html" target="_blank" rel="noopener noreferrer">Essay</a><span class="sep">·</span>
+                <a href="/writing/the-term-the-latency-model-was-missing/">Latency model</a><span class="sep">·</span>
                 <a href="https://github.com/lvlrSajjad/simframe" target="_blank" rel="noopener noreferrer">Source</a><span class="sep">·</span>
                 <a href="https://www.npmjs.com/package/simframe" target="_blank" rel="noopener noreferrer">npm</a>
             </p>
 
-            <h3 id="sidecrew"><a href="https://github.com/lvlrSajjad/sidecrew" target="_blank" rel="noopener noreferrer">sidecrew</a>
-                <span class="tag">&mdash; tiered inference with mechanical arbitration</span></h3>
-            <p>A frontier model plans and reviews; small models running on the machine do the narrow
-                work; and a <em>mechanical</em> gate &mdash; not a judge model, not a human &mdash;
-                decides what the expensive model is ever allowed to see. Generation costs zero API
-                tokens and touches no network, and the data contract refuses to serialise a local run
-                that claims otherwise.</p>
-            <p>Measured against the thing a colleague actually does today, which is asking the
-                frontier model directly: on 19 hand-written changes to an unmodified commercial
-                TypeScript codebase, the 7&nbsp;B produced output <strong>byte-identical to Opus on 18
-                of them</strong>, at <strong>zero worker tokens</strong> against Opus&rsquo;s 80,131.
-                On a second, larger codebase it was genuinely worse &mdash; and the gate caught every
-                failure loudly: one change renamed seven symbols when asked for one, another hit a type,
-                a module path and a public property key for <strong>122 compile errors</strong>. None
-                was applied. That pair is the whole argument: where the small model is good enough it
-                is free, and where it is not, a machine notices before a human does.</p>
-            <p>The decision rule was frozen before the tool had produced a single verdict, and it
-                currently <strong>withholds its own verdict</strong> &mdash; every task in those runs
-                was a rename, and a task set on which three different models emit identical bytes
-                cannot rank anything. The earlier unit-test workload is published with its negative
-                results too: 17/20 on a fixture of small pure functions in a project I configured, but
-                <strong>4/10 on unmodified real code</strong> with a 95&nbsp;% interval of roughly
-                0.12&ndash;0.74 &mdash; the fixture overstates real work by more than 2&times;. Swift
-                did not clear the bar, and the 14&nbsp;B model was never the right trade.
-                Written up in
-                <a href="/writing/a-verifier-beats-a-bigger-model/">A verifier beats a bigger
-                model</a>,
-                <a href="/writing/the-exemplar-was-worth-one-import/">The exemplar was worth one
-                import line</a> and
-                <a href="/writing/the-gate-is-only-as-honest-as-what-reaches-it/">The gate is only as
-                honest as what reaches it</a>.</p>
-            <p class="where">
-                <a href="https://github.com/lvlrSajjad/sidecrew" target="_blank" rel="noopener noreferrer">Source</a>
-            </p>
-
-            <h3 id="credoctor"><a href="https://lvlrsajjad.github.io/credoctor/" target="_blank" rel="noopener noreferrer">credoctor</a>
-                <span class="tag">&mdash; prove your git credentials, don&rsquo;t read the config</span></h3>
-            <p>For anyone who works for more than one organisation from one machine. It treats
-                everything that must agree for one directory tree &mdash; git identity, SSH key,
-                GPG signing key, GitHub CLI account, browser profile &mdash; as a single credential
-                domain, and verifies it by making real calls: an SSH greeting, a fetch, a GitHub
-                API request with that token. That catches what reading config files cannot, such
-                as an SSH key registered on the right account but never authorised for the
-                organisation&rsquo;s SSO. Read-only by design in its first release.</p>
-            <p class="where">
-                <a href="https://lvlrsajjad.github.io/credoctor/" target="_blank" rel="noopener noreferrer">Website</a><span class="sep">·</span>
-                <a href="https://github.com/lvlrSajjad/credoctor" target="_blank" rel="noopener noreferrer">Source</a><span class="sep">·</span>
-                <a href="https://www.npmjs.com/package/credoctor" target="_blank" rel="noopener noreferrer">npm</a>
-            </p>
-
-            <h3 id="agent-ready"><a href="https://github.com/lvlrSajjad/agent-ready-monorepo" target="_blank" rel="noopener noreferrer">Agent-ready codebases</a>
-                <span class="tag">&mdash; a documented method</span></h3>
-            <p>How to make a large codebase legible to AI coding agents: one conventions file read
-                by every tool, skills written for the flows a single file cannot explain, and a
-                routing table so the right one is loaded before the agent starts guessing.
-                Published with the numbers from two comparable work windows and an explicit
-                account of what those numbers do not prove.</p>
-            <p class="where">
-                <a href="https://github.com/lvlrSajjad/agent-ready-monorepo" target="_blank" rel="noopener noreferrer">Worked exemplar</a><span class="sep">·</span>
-                <a href="https://medium.com/@lvlr.xaus/i-stopped-prompting-better-and-started-writing-things-down-087821900e4e" target="_blank" rel="noopener noreferrer">Essay</a>
-            </p>
-        </section>
-
-        <section id="writing">
-            <h2>Writing</h2>
-            <ul class="pieces">
-                <li>
-                    <h3><a href="/writing/a-verifier-beats-a-bigger-model/">A verifier beats a bigger model</a></h3>
-                    <p class="dek">A 7B model on a laptop wrote unit tests for zero API tokens and
-                        survived a mechanical gate 17/20 of the time &mdash; on a fixture of small pure
-                        functions. On unmodified real code it was 4/10. The 14B did not do better, and
-                        the gap between those two numbers is the note.</p>
-                </li>
-                <li>
-                    <h3><a href="/writing/the-gate-is-only-as-honest-as-what-reaches-it/">The gate is only as honest as what reaches it</a></h3>
-                    <p class="dek">Six times a measurement said a model was bad at its job, and
-                        six times the model was fine.</p>
-                </li>
-                <li>
-                    <h3><a href="https://lvlrsajjad.github.io/simframe/agents-shouldnt-blink.html" target="_blank" rel="noopener noreferrer">Agents shouldn&rsquo;t blink</a></h3>
-                    <p class="dek">Perception for an agent should be an always-on daemon, not a
-                        function the model calls. Measured on the iOS Simulator.</p>
-                </li>
-                <li>
-                    <h3><a href="/writing/solana-mobile-before-sms/">What connecting a mobile app to a Solana wallet looked like before the Mobile Wallet Adapter</a></h3>
-                    <p class="dek">A Flutter prototype from May 2022 and the platform release that
-                        superseded it a month later.</p>
-                </li>
-                <li>
-                    <h3><a href="https://lvlrsajjad.github.io/cbomctl/writing/everyone-agrees-on-the-risk/" target="_blank" rel="noopener noreferrer">Everyone agrees on the risk. They disagree on the price.</a></h3>
-                    <p class="dek">Why four national authorities reach opposite conclusions from
-                        the same premise.</p>
-                </li>
-                <li>
-                    <h3><a href="https://lvlrsajjad.github.io/cbomctl/writing/rsa-2048-and-rsa-3072/" target="_blank" rel="noopener noreferrer">RSA-2048 and RSA-3072 have different futures</a></h3>
-                    <p class="dek">NIST IR 8547 scopes its 2030 deprecation by security strength,
-                        not by algorithm.</p>
-                </li>
-                <li>
-                    <h3><a href="https://medium.com/@lvlr.xaus/i-stopped-prompting-better-and-started-writing-things-down-087821900e4e" target="_blank" rel="noopener noreferrer">I stopped prompting better and started writing things down</a></h3>
-                    <p class="dek">What actually made AI coding agents useful on a 220,000-line
-                        codebase.</p>
-                </li>
-            </ul>
-            <p class="where"><a href="/writing/">All writing &rarr;</a></p>
+            <p class="where"><a href="/projects/">More tools and experiments &rarr;</a></p>
         </section>
 
         <section id="resume">
@@ -276,9 +161,11 @@
                         <h3>Senior Software Engineer</h3>
                         <p class="org">Ecotrak Facility Management Software</p>
                         <ul>
-                            <li>Lead mobile engineer on a facility-management platform used in real operational environments.</li>
-                            <li>Architected a React Native monorepo shared by several apps, improving reuse, maintainability and release speed.</li>
-                            <li>Built robust offline data synchronisation for low-connectivity and unstable networks.</li>
+                            <li>Lead mobile engineering on a facility-management platform used in
+                                real operational environments, with a team of three including me:
+                                a 220,000-line React Native monorepo shared by several apps, its
+                                offline-first sync layer for low-connectivity and unstable
+                                networks, and its release pipeline.</li>
                             <li>Integrated Siri App Intents with React Native for native-level voice interactions.</li>
                             <li>Created a Tailwind-style design and styling system for React Native.</li>
                         </ul>
@@ -290,10 +177,10 @@
                         <h3>Senior Software Engineer</h3>
                         <p class="org">BraveBinary</p>
                         <ul>
-                            <li>Designed and built a multi-purpose networking application supporting diverse user workflows.</li>
-                            <li>Architected a general-purpose backend for secure storage and retrieval of medical resources.</li>
-                            <li>Designed a SaaS cloud application covering end-to-end medical billing.</li>
-                            <li>Built an insurance charge estimation system for cost transparency.</li>
+                            <li>A general-purpose backend for secure storage and retrieval of medical resources.</li>
+                            <li>A SaaS application covering end-to-end medical billing.</li>
+                            <li>An insurance charge estimation system, for cost transparency.</li>
+                            <li>A multi-purpose networking application supporting diverse user workflows.</li>
                         </ul>
                     </div>
                 </li>
@@ -303,6 +190,7 @@
                         <h3>Lead Software Engineer</h3>
                         <p class="org">Esperlos</p>
                         <ul>
+                            <li>Led a team of nine including me across three products.</li>
                             <li>Took a food delivery application from concept to production.</li>
                             <li>Built an internal collaboration platform for IT department teams.</li>
                             <li>Designed a logistics platform connecting shipping companies with their customers.</li>
@@ -315,10 +203,10 @@
                         <h3>Software Engineer</h3>
                         <p class="org">Owraman Intelligent Software</p>
                         <ul>
-                            <li>Developed an Android e-commerce social network combining commerce and community features.</li>
-                            <li>Engineered a reusable networking library for offline-first Android apps.</li>
-                            <li>Built a peer-to-peer transportation platform for ridesharing and taxi services.</li>
-                            <li>Built a car repair shop management system covering diagnostics, scheduling and accounting.</li>
+                            <li>An Android e-commerce social network combining commerce and community features.</li>
+                            <li>A reusable networking library for offline-first Android apps.</li>
+                            <li>A peer-to-peer transportation platform for ridesharing and taxi services.</li>
+                            <li>A car repair shop management system covering diagnostics, scheduling and accounting.</li>
                         </ul>
                     </div>
                 </li>
@@ -370,16 +258,49 @@
                 <dt>Cloud</dt>
                 <dd>GCP, AWS and Amplify, Azure, Firebase, Docker</dd>
                 <dt>Languages</dt>
-                <dd>TypeScript and JavaScript, Java, Swift, PHP, Python, Dart, C++, C#</dd>
+                <dd>TypeScript and JavaScript, Java, Swift, Python, Dart, C++, PHP, C#</dd>
                 <dt>Practice</dt>
                 <dd>Software architecture, design patterns, unit testing, web security, refactoring long-lived codebases</dd>
             </dl>
         </section>
 
+        <section id="writing">
+            <h2>Writing</h2>
+            <ul class="pieces">
+                <li>
+                    <h3><a href="/writing/155-tests-failed-and-none-were-broken/">155 tests failed, and none of them were broken</a></h3>
+                    <p class="dek">A verification gate returned a detailed, specific,
+                        well-evidenced failure. It named the tests. It was wrong, and nothing in
+                        its output could have told me so.</p>
+                </li>
+                <li>
+                    <h3><a href="/writing/your-gate-is-fine-its-reference-is-wrong/">Your gate is fine. Its reference is wrong.</a></h3>
+                    <p class="dek">A broken automated check announces itself. A check whose
+                        baseline is corrupted keeps passing, keeps proving it ran, and quietly
+                        asks for less &mdash; and every summary statistic you have will say the
+                        run went well.</p>
+                </li>
+                <li>
+                    <h3><a href="/writing/the-term-the-latency-model-was-missing/">The term the latency model was missing</a></h3>
+                    <p class="dek">A two-term model of per-step wall clock predicted the tool was
+                        at human speed. Running the benchmark suite end to end falsified it, and
+                        the third term reconciles two measurements that had looked
+                        contradictory.</p>
+                </li>
+                <li>
+                    <h3><a href="/writing/a-perfect-score-and-a-veto/">A perfect score, and a veto</a></h3>
+                    <p class="dek">I froze a decision rule before the tool had produced a single
+                        number, including one clause I thought was ceremony. The first result came
+                        back perfect on the metric and failed on the clause.</p>
+                </li>
+            </ul>
+            <p class="where"><a href="/writing/">All writing &rarr;</a></p>
+        </section>
+
         <section id="contact">
             <h2>Contact</h2>
-            <p>Open to conversations about post-quantum migration planning, healthcare data
-                platforms, tooling for coding agents, and engineering leadership.</p>
+            <p>Open to conversations about post-quantum migration for long-lived regulated data,
+                and engineering leadership.</p>
             <ul class="contact">
                 <li><span class="k">Email</span> <a href="mailto:lvlr.xaus@gmail.com">lvlr.xaus@gmail.com</a></li>
                 <li><span class="k">Telegram</span> <a href="https://t.me/lvlr_xaus" target="_blank" rel="noopener noreferrer">@lvlr_xaus</a></li>
