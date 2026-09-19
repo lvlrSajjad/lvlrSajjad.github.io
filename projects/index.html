@@ -2,7 +2,7 @@
 layout: null
 permalink: /projects/
 title: Tools and experiments
-description: "sidecrew, credoctor, and a documented method for making a large codebase legible to AI coding agents."
+description: "sidecrew, credoctor, hazardserve, and a documented method for making a large codebase legible to AI coding agents."
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -107,6 +107,35 @@ description: "sidecrew, credoctor, and a documented method for making a large co
             <p class="where">
                 <a href="https://github.com/lvlrSajjad/agent-ready-monorepo" target="_blank" rel="noopener noreferrer">Worked exemplar</a><span class="sep">·</span>
                 <a href="https://medium.com/@lvlr.xaus/i-stopped-prompting-better-and-started-writing-things-down-087821900e4e" target="_blank" rel="noopener noreferrer">Essay</a>
+            </p>
+
+            <h3 id="hazardserve"><a href="https://lvlrsajjad.github.io/hazardserve/" target="_blank" rel="noopener noreferrer">hazardserve</a>
+                <span class="tag">&mdash; scheduling LLM requests on nodes that disappear</span></h3>
+            <p>Autoregressive decoding is stateful: every generated token grows a KV cache that lives
+                on exactly one node. Spot instances get reclaimed, volunteer laptops get their owners
+                back. Serving systems today treat that departure as a <em>surprise</em> and recover
+                afterwards &mdash; but departure is not random. Each node has a hazard function that
+                can be estimated from its own session history and that changes with how long the node
+                has already been up, so a laptop idle for six hours and one that woke a minute ago are
+                not the same bet. One expected-cost function, <code>E = T + L</code>, then drives both
+                decisions: where to place a request, and when to move it pre-emptively while the source
+                is still alive and a cheap KV transfer is still an option.</p>
+            <p>This is a v0.1 scaffold and the numbers in it are <strong>not a result</strong>. On
+                synthetic churn &mdash; three seeds, two simulated hours &mdash; the placement rule cuts
+                unplanned failures from 39.0 to <strong>35.3</strong> and wasted work from 90.9&nbsp;s to
+                <strong>70.9&nbsp;s</strong> against the reactive baseline at equal latency, with an
+                oracle that knows every node&rsquo;s true remaining session length sitting at 22.3 and
+                61.7&nbsp;s &mdash; roughly a further 2&times; available to better prediction. The
+                honest half: on the volunteer fleet the same policy <strong>wasted more</strong> than
+                the baseline it was meant to beat, 691&nbsp;s against 586&nbsp;s, and the pre-emptive
+                migration trigger is so conservative it fires ten times in one configuration and never
+                in the other. Synthetic churn cannot settle any of that. Public spot and volunteer
+                traces are the next phase, and the plan names in advance the gain below which the
+                framing gets repositioned rather than defended.</p>
+            <p class="where">
+                <a href="https://lvlrsajjad.github.io/hazardserve/" target="_blank" rel="noopener noreferrer">Documentation</a><span class="sep">·</span>
+                <a href="https://github.com/lvlrSajjad/hazardserve" target="_blank" rel="noopener noreferrer">Source</a><span class="sep">·</span>
+                <a href="https://github.com/lvlrSajjad/hazardserve/blob/main/PLAN.md" target="_blank" rel="noopener noreferrer">Plan</a>
             </p>
         </section>
     </main>
